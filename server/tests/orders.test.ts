@@ -37,6 +37,20 @@ describe("Pedidos", () => {
     expect(res.body.order).toMatchObject({ subtotalCents: 5000, shippingCents: 0, totalCents: 5000 });
   });
 
+  it("no deja comprar de nuevo un eBook que el cliente ya pagó, pero sí su edición impresa", async () => {
+    const { user, auth } = await crearUsuario();
+    const libro = await crearLibro();
+    const linea = { bookId: libro._id, title: libro.title, format: "ebook", quantity: 1, unitPriceCents: 999 };
+    await Order.create({ userId: user._id, items: [linea], subtotalCents: 999, shippingCents: 0, totalCents: 999, status: "FULFILLED", paymentStatus: "CAPTURED" });
+    const repetido = await api().post("/api/orders").set(auth).send({ items: [{ bookId: String(libro._id), format: "ebook", quantity: 1 }] });
+    expect(repetido.status).toBe(409);
+    expect(repetido.body.code).toBe("EBOOK_YA_COMPRADO");
+    const impreso = await api().post("/api/orders").set(auth).send({ items: [{ bookId: String(libro._id), format: "impreso", quantity: 1 }], shipping: envio });
+    expect(impreso.status).toBe(201);
+    const otro = await crearUsuario();
+    expect((await api().post("/api/orders").set(otro.auth).send({ items: [{ bookId: String(libro._id), format: "ebook", quantity: 1 }] })).status).toBe(201);
+  });
+
   it("rechaza cantidades inválidas, eBooks repetidos, impresos sin dirección y carritos vacíos", async () => {
     const { auth } = await crearUsuario();
     const libro = await crearLibro();

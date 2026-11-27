@@ -46,6 +46,19 @@ export async function crearPedido(userId: string, items: ItemSolicitado[], envio
     }
   }
 
+  // Una licencia de eBook no se compra dos veces: si ya está pagada, el libro está en la biblioteca.
+  const ebooks = lineas.filter((l) => l.format === "ebook").map((l) => l.bookId);
+  if (ebooks.length > 0) {
+    const previo = await Order.findOne(
+      { userId, status: { $in: ["PAID", "FULFILLED"] }, items: { $elemMatch: { format: "ebook", bookId: { $in: ebooks } } } },
+      { items: 1 },
+    );
+    if (previo) {
+      const repetido = lineas.find((l) => l.format === "ebook" && previo.items.some((i) => i.format === "ebook" && String(i.bookId) === String(l.bookId)));
+      throw new HttpError(409, `Ya tienes "${repetido?.title}" en eBook; descárgalo desde Mi biblioteca`, "EBOOK_YA_COMPRADO");
+    }
+  }
+
   const impresos = lineas.filter((l) => l.format === "impreso");
   if (impresos.length > 0 && !envio) throw new HttpError(400, "Los libros impresos requieren dirección de envío");
 

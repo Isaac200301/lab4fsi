@@ -99,7 +99,7 @@ npm install
 npm run dev                   # http://localhost:3000
 ```
 
-Pruebas del backend (37, con MongoDB en memoria y PayPal simulado): `cd server && npm test`.
+Pruebas del backend (38, con MongoDB en memoria y PayPal simulado): `cd server && npm test`.
 
 ### Variables de entorno
 
