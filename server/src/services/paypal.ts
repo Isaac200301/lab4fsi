@@ -59,13 +59,21 @@ function normalizar(o: RespuestaOrden): CapturaPayPal {
   };
 }
 
-/** fetch con manejo de errores de red: se traducen a un 502 con mensaje seguro. */
+/**
+ * fetch con manejo de errores de red. Reintenta una vez porque una conexión keep-alive
+ * cerrada por PayPal falla de inmediato ("fetch failed"); el reintento es seguro porque las
+ * operaciones de escritura envían PayPal-Request-Id. Si vuelve a fallar responde 502.
+ */
 async function fetchSeguro(url: string, init: RequestInit): Promise<Response> {
-  try {
-    return await fetch(url, { ...init, signal: AbortSignal.timeout(15_000) });
-  } catch (e) {
-    console.error("[paypal] Error de red:", e instanceof Error ? e.message : e);
-    throw new HttpError(502, "No fue posible conectar con PayPal; intenta de nuevo");
+  for (let intento = 1; ; intento++) {
+    try {
+      return await fetch(url, { ...init, signal: AbortSignal.timeout(15_000) });
+    } catch (e) {
+      const causa = (e as { cause?: { code?: string } }).cause?.code ?? (e instanceof Error ? e.message : String(e));
+      console.error(`[paypal] Error de red (intento ${intento}): ${causa}`);
+      if (intento >= 2) throw new HttpError(502, "No fue posible conectar con PayPal; intenta de nuevo");
+      await new Promise((r) => setTimeout(r, 300));
+    }
   }
 }
 
@@ -88,6 +96,7 @@ export const paypal = {
   async crearOrden(p: { pedidoId: string; monto: string; moneda: string; descripcion: string }): Promise<{ id: string }> {
     const { ok, status, cuerpo } = await llamar("/v2/checkout/orders", {
       method: "POST",
+      requestId: `create-${p.pedidoId}-${Date.now()}`,
       body: JSON.stringify({
         intent: "CAPTURE",
         purchase_units: [{

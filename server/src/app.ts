@@ -22,7 +22,8 @@ export function crearApp() {
   if (config.NODE_ENV !== "test") {
     app.use((req, res, next) => {
       const inicio = Date.now();
-      res.on("finish", () => console.log(`[http] ${req.method} ${req.path} ${res.statusCode} ${Date.now() - inicio}ms`));
+      // originalUrl sin la consulta: req.path cambia dentro de los routers y no se registran parámetros.
+      res.on("finish", () => console.log(`[http] ${req.method} ${req.originalUrl.split("?")[0]} ${res.statusCode} ${Date.now() - inicio}ms`));
       next();
     });
   }
