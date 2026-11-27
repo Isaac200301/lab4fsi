@@ -5,6 +5,8 @@ import { config } from "./config.js";
 import { estadoBD } from "./db.js";
 import { manejadorErrores, noEncontrado } from "./errors.js";
 import { authRouter } from "./routes/auth.js";
+import { booksRouter } from "./routes/books.js";
+import { ordersRouter } from "./routes/orders.js";
 
 export function crearApp() {
   const app = express();
@@ -28,6 +30,8 @@ export function crearApp() {
   });
 
   app.use("/api/auth", authRouter);
+  app.use("/api/books", booksRouter);
+  app.use("/api/orders", ordersRouter);
 
   app.use(noEncontrado);
   app.use(manejadorErrores);
