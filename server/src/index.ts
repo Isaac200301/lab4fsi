@@ -3,6 +3,7 @@ import { config } from "./config.js";
 import { conectarBD } from "./db.js";
 import { crearApp } from "./app.js";
 import { iniciarTiempoReal } from "./realtime.js";
+import { expirarPedidosVencidos } from "./services/orders.js";
 
 async function main() {
   try {
@@ -18,6 +19,16 @@ async function main() {
   server.listen(config.PORT, "0.0.0.0", () => {
     console.log(`[api] Folio API escuchando en http://0.0.0.0:${config.PORT} (${config.NODE_ENV})`);
   });
+
+  // Libera el stock de pedidos que no se pagaron a tiempo.
+  setInterval(async () => {
+    try {
+      const n = await expirarPedidosVencidos(config.ORDER_TTL_MINUTES);
+      if (n > 0) console.log(`[pedidos] ${n} pedido(s) expirado(s) y stock liberado`);
+    } catch (e) {
+      console.error("[pedidos] Error expirando pedidos:", e instanceof Error ? e.message : e);
+    }
+  }, 60_000).unref();
 }
 
 main();
