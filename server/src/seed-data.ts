@@ -1,0 +1,38 @@
+/**
+ * Catálogo de demostración: clásicos de dominio público y títulos ficticios.
+ * No contiene datos personales reales. Precios en centavos de dólar.
+ */
+export const LIBROS_SEED = [
+  { isbn: "978-0000000001", title: "Don Quijote de la Mancha", author: "Miguel de Cervantes", category: "Novela", year: 1605, pages: 1056, ebookPriceCents: 499, printPriceCents: 2490, stock: 12,
+    description: "Las aventuras del hidalgo que, de tanto leer libros de caballerías, decide hacerse caballero andante junto a su escudero Sancho Panza." },
+  { isbn: "978-0000000002", title: "Orgullo y prejuicio", author: "Jane Austen", category: "Novela", year: 1813, pages: 432, ebookPriceCents: 399, printPriceCents: 1890, stock: 8,
+    description: "Elizabeth Bennet y el señor Darcy aprenden a mirar más allá de las primeras impresiones en la Inglaterra rural." },
+  { isbn: "978-0000000003", title: "La metamorfosis", author: "Franz Kafka", category: "Novela", year: 1915, pages: 96, ebookPriceCents: 299, printPriceCents: 1190, stock: 3,
+    description: "Gregor Samsa despierta convertido en un insecto y su familia debe decidir qué hacer con él." },
+  { isbn: "978-0000000004", title: "Frankenstein", author: "Mary Shelley", category: "Ciencia ficción", year: 1818, pages: 280, ebookPriceCents: 399, printPriceCents: 1690, stock: 10,
+    description: "Victor Frankenstein da vida a una criatura y debe enfrentar las consecuencias de su ambición." },
+  { isbn: "978-0000000005", title: "La máquina del tiempo", author: "H. G. Wells", category: "Ciencia ficción", year: 1895, pages: 128, ebookPriceCents: 299, printPriceCents: 1390, stock: 6,
+    description: "Un inventor viaja al año 802.701 y descubre en qué se ha convertido la humanidad." },
+  { isbn: "978-0000000006", title: "Veinte mil leguas de viaje submarino", author: "Julio Verne", category: "Ciencia ficción", year: 1870, pages: 448, ebookPriceCents: 399, printPriceCents: 1990, stock: 0,
+    description: "El profesor Aronnax recorre los océanos a bordo del Nautilus, el submarino del enigmático capitán Nemo." },
+  { isbn: "978-0000000007", title: "Drácula", author: "Bram Stoker", category: "Misterio", year: 1897, pages: 418, ebookPriceCents: 399, printPriceCents: 1790, stock: 7,
+    description: "Diarios y cartas reconstruyen la llegada del conde Drácula a Inglaterra y la cacería para detenerlo." },
+  { isbn: "978-0000000008", title: "El sabueso de los Baskerville", author: "Arthur Conan Doyle", category: "Misterio", year: 1902, pages: 256, ebookPriceCents: 349, printPriceCents: 1590, stock: 9,
+    description: "Sherlock Holmes y el doctor Watson investigan la leyenda de un perro infernal en los páramos de Devon." },
+  { isbn: "978-0000000009", title: "Alicia en el país de las maravillas", author: "Lewis Carroll", category: "Infantil", year: 1865, pages: 192, ebookPriceCents: 299, printPriceCents: 1490, stock: 15,
+    description: "Alicia sigue a un conejo blanco y cae en un mundo donde la lógica funciona al revés." },
+  { isbn: "978-0000000010", title: "El arte de la guerra", author: "Sun Tzu", category: "Historia", year: -500, pages: 112, ebookPriceCents: 249, printPriceCents: null, stock: 0,
+    description: "Tratado clásico de estrategia militar, leído hoy también como guía de liderazgo y negociación." },
+  { isbn: "978-0000000011", title: "Arquitectura limpia en la práctica", author: "Lucía Restrepo", category: "Tecnología", year: 2025, pages: 340, ebookPriceCents: 1999, printPriceCents: 3990, stock: 4,
+    description: "Cómo separar dominio, casos de uso e infraestructura en aplicaciones web modernas, con ejemplos en TypeScript." },
+  { isbn: "978-0000000012", title: "MongoDB para desarrolladores", author: "Andrés Gómez", category: "Tecnología", year: 2024, pages: 290, ebookPriceCents: 1799, printPriceCents: null, stock: 0,
+    description: "Modelado de documentos, índices, agregaciones y transacciones para aplicaciones en producción." },
+  { isbn: "978-0000000013", title: "Desarrollo asistido por IA", author: "Camila Ortiz", category: "Tecnología", year: 2026, pages: 220, ebookPriceCents: 2199, printPriceCents: 4290, stock: 2,
+    description: "Prompts, planes revisables y pruebas: cómo construir software con asistentes de IA sin perder el control." },
+  { isbn: "978-0000000014", title: "Finanzas para emprendedores", author: "Mateo Vargas", category: "Negocios", year: 2023, pages: 260, ebookPriceCents: 1299, printPriceCents: 2890, stock: 5,
+    description: "Flujo de caja, precios y punto de equilibrio explicados para quien empieza su primer negocio." },
+  { isbn: "978-0000000015", title: "El viaje de Nubia", author: "Sara Mejía", category: "Fantasía", year: 2022, pages: 310, ebookPriceCents: 899, printPriceCents: 2290, stock: 11,
+    description: "Una cartógrafa descubre que los mapas de su reino cambian cada noche y decide seguir el último." },
+  { isbn: "978-0000000016", title: "Breve historia de los Andes", author: "Tomás Cárdenas", category: "Historia", year: 2021, pages: 380, ebookPriceCents: 1099, printPriceCents: 2690, stock: 6,
+    description: "Pueblos, imperios y caminos de la cordillera desde los primeros asentamientos hasta la independencia." },
+];
