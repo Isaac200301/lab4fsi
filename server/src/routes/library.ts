@@ -33,7 +33,7 @@ libraryRouter.get("/:orderId/:bookId/download", async (req, res) => {
   if (!pedido || !item) throw new HttpError(404, "No tienes este eBook en tu biblioteca");
   const libro = await Book.findById(item.bookId);
 
-  const licencia = `Licencia de ${req.user!.name} <${req.user!.email}> · Pedido ${String(pedido._id).slice(-8).toUpperCase()}`;
+  const licencia = `Licencia de ${req.user!.name} <${req.user!.email}> · Pedido ${String(pedido._id).slice(-6).toUpperCase()}`; // mismo código que muestra la tienda
   const nombre = item.title.normalize("NFD").replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-").toLowerCase();
   res.setHeader("Content-Type", "application/pdf");
   res.setHeader("Content-Disposition", `attachment; filename="${nombre || "ebook"}.pdf"`);
