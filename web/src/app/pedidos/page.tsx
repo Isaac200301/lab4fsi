@@ -39,7 +39,12 @@ function Pedidos() {
       </div>
       {confirmado && (
         <p role="status" className="mt-4 rounded border border-biblioteca/40 bg-biblioteca/10 p-4 text-biblioteca">
-          Pago confirmado para el pedido {codigoPedido(confirmado)}. Tus eBooks ya están en <Link href="/biblioteca" className="underline">Mi biblioteca</Link>.
+          Pago confirmado para el pedido {codigoPedido(confirmado)}.{" "}
+          {pedidos?.find((p) => p.id === confirmado)?.items.some((i) => i.format === "ebook") ? (
+            <>Tus eBooks ya están en <Link href="/biblioteca" className="underline">Mi biblioteca</Link>.</>
+          ) : (
+            <>Te avisaremos aquí cada vez que avance el envío.</>
+          )}
         </p>
       )}
       {error && <p className="mt-4 text-alerta">{error}</p>}
