@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diagramas Folio</title>
+<style>
+  body { margin: 0; background: #fff; font-family: "Segoe UI", Arial, sans-serif; }
+  .lamina { width: 1400px; padding: 24px; box-sizing: border-box; }
+  h2 { font-size: 22px; margin: 0 0 12px; color: #1d2b45; }
+  svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+</head>
+<body>
+<div class="lamina" id="arquitectura">
+<h2>Arquitectura de Folio</h2>
+<svg width="1352" height="650" viewBox="0 0 1352 650">
+  <defs><marker id="f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#44546a"/></marker></defs>
+  <style>
+    .t { font-size: 15px; fill: #1d2b45; } .tb { font-size: 17px; font-weight: 700; fill: #1d2b45; }
+    .tc { font-size: 13px; fill: #5b6472; } .rol { font-size: 12px; font-weight: 700; letter-spacing: .06em; }
+    .l { stroke: #44546a; stroke-width: 2; fill: none; marker-end: url(#f); }
+    .ld { stroke: #44546a; stroke-width: 2; fill: none; marker-end: url(#f); stroke-dasharray: 6 5; }
+  </style>
+
+  <rect x="20" y="200" width="220" height="190" rx="12" fill="#fff6e8" stroke="#b8862b" stroke-width="2"/>
+  <text x="36" y="226" class="rol" fill="#8a6219">NAVEGADOR</text>
+  <text x="36" y="252" class="tb">Cliente / Admin</text>
+  <text x="36" y="278" class="tc">Carrito en localStorage</text>
+  <text x="36" y="298" class="tc">JWT en el encabezado</text>
+  <text x="36" y="318" class="tc">Authorization: Bearer</text>
+  <text x="36" y="348" class="tc">SDK de PayPal (ventana</text>
+  <text x="36" y="368" class="tc">de aprobación)</text>
+
+  <rect x="330" y="30" width="380" height="150" rx="12" fill="#eef2f8" stroke="#1d2b45" stroke-width="2"/>
+  <text x="346" y="56" class="rol" fill="#1d2b45">RAILWAY · SERVICIO web</text>
+  <text x="346" y="82" class="tb">Next.js 15 (App Router)</text>
+  <text x="346" y="106" class="tc">Solo interfaz: catálogo, carrito, checkout,</text>
+  <text x="346" y="126" class="tc">pedidos, biblioteca, inventario, Kanban</text>
+  <text x="346" y="150" class="tc">Variables públicas: NEXT_PUBLIC_API_URL y</text><text x="346" y="168" class="tc">NEXT_PUBLIC_PAYPAL_CLIENT_ID (sin secretos)</text>
+
+  <rect x="330" y="250" width="420" height="330" rx="12" fill="#eaf4ef" stroke="#2e5e4e" stroke-width="2"/>
+  <text x="346" y="276" class="rol" fill="#2e5e4e">RAILWAY · SERVICIO server</text>
+  <text x="346" y="302" class="tb">Node.js + Express 5 + Socket.IO</text>
+  <g class="t">
+    <text x="346" y="334">/api/auth · bcrypt + JWT + límite de intentos</text>
+    <text x="346" y="358">/api/books · catálogo y stock atómico</text>
+    <text x="346" y="382">/api/orders · recálculo y reserva de stock</text>
+    <text x="346" y="406">/api/payments/paypal · crear y capturar</text>
+    <text x="346" y="430">/api/library · PDF con licencia</text>
+    <text x="346" y="454">/api/admin/stats · /health</text>
+  </g>
+  <text x="346" y="488" class="tc">Socket.IO en el mismo proceso: salas catalog,</text>
+  <text x="346" y="508" class="tc">user:&lt;id&gt; y admin asignadas desde el JWT</text>
+  <text x="346" y="540" class="tc">Secretos: MONGODB_URI, JWT_SECRET, PAYPAL_CLIENT_SECRET</text>
+  <text x="346" y="560" class="tc">Expiración de pedidos sin pagar cada minuto</text>
+
+  <rect x="880" y="250" width="230" height="170" rx="12" fill="#f3effa" stroke="#6a4fb0" stroke-width="2"/>
+  <text x="896" y="276" class="rol" fill="#56408f">MONGODB ATLAS</text>
+  <text x="896" y="302" class="tb">Clúster M0 · base folio</text>
+  <g class="t"><text x="896" y="334">users</text><text x="896" y="356">books</text><text x="896" y="378">orders</text><text x="896" y="400">payments</text></g>
+
+  <rect x="880" y="460" width="230" height="120" rx="12" fill="#fff" stroke="#9aa5b1" stroke-width="2"/>
+  <text x="896" y="486" class="rol" fill="#5b6472">PAYPAL SANDBOX</text>
+  <text x="896" y="512" class="tb">Orders API v2</text>
+  <text x="896" y="536" class="tc">OAuth client_credentials</text>
+  <text x="896" y="556" class="tc">PayPal-Request-Id (idempotencia)</text>
+
+  <rect x="1180" y="30" width="150" height="110" rx="12" fill="#fff" stroke="#9aa5b1" stroke-width="2"/>
+  <text x="1196" y="56" class="rol" fill="#5b6472">PRUEBAS</text>
+  <text x="1196" y="82" class="tb">TestSprite</text>
+  <text x="1196" y="106" class="tc">Live Web App sobre</text>
+  <text x="1196" y="124" class="tc">la URL pública</text>
+
+  <path d="M240 260 C 290 230, 290 130, 328 110" class="l"/><text x="246" y="190" class="tc">HTTPS</text>
+  <path d="M240 320 L 328 340" class="l"/><text x="250" y="318" class="tc">REST</text>
+  <path d="M240 350 L 328 400" class="l"/><text x="250" y="390" class="tc">WSS</text>
+  <path d="M750 340 L 878 340" class="l"/><text x="762" y="330" class="tc">Mongoose</text>
+  <path d="M750 520 L 878 520" class="l"/><text x="762" y="510" class="tc">HTTPS</text>
+  <path d="M130 390 L 130 610 L 995 610 L 995 584" class="ld"/><text x="420" y="632" class="tc">aprobación del pago en la ventana de PayPal</text>
+  <path d="M1255 140 C 1255 200, 760 210, 712 160" class="ld"/>
+</svg>
+</div>
+
+<div class="lamina" id="estados">
+<h2>Estados del pedido y del envío</h2>
+<svg width="1352" height="430" viewBox="0 0 1352 430">
+  <defs><marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#44546a"/></marker></defs>
+  <style>
+    .e { font-size: 15px; font-weight: 700; fill: #1d2b45; } .tc { font-size: 13px; fill: #5b6472; }
+    .l { stroke: #44546a; stroke-width: 2; fill: none; marker-end: url(#g); }
+  </style>
+  <text x="20" y="30" class="e" style="font-size:16px">Pedido</text>
+  <rect x="20" y="50" width="200" height="56" rx="28" fill="#fff6e8" stroke="#b8862b" stroke-width="2"/><text x="44" y="84" class="e">PENDING_PAYMENT</text>
+  <rect x="380" y="50" width="140" height="56" rx="28" fill="#eaf4ef" stroke="#2e5e4e" stroke-width="2"/><text x="425" y="84" class="e">PAID</text>
+  <rect x="700" y="50" width="160" height="56" rx="28" fill="#eaf4ef" stroke="#2e5e4e" stroke-width="2"/><text x="728" y="84" class="e">FULFILLED</text>
+  <rect x="20" y="170" width="150" height="50" rx="25" fill="#f2f3f5" stroke="#9aa5b1" stroke-width="2"/><text x="44" y="201" class="e">CANCELLED</text>
+  <rect x="200" y="170" width="140" height="50" rx="25" fill="#f2f3f5" stroke="#9aa5b1" stroke-width="2"/><text x="230" y="201" class="e">EXPIRED</text>
+  <path d="M220 78 L 378 78" class="l"/><text x="232" y="68" class="tc">captura verificada</text><text x="232" y="98" class="tc">(con impresos)</text>
+  <path d="M520 78 L 698 78" class="l"/><text x="540" y="68" class="tc">envío ENTREGADO</text>
+  <path d="M120 50 C 140 0, 760 0, 780 48" class="l"/><text x="340" y="40" class="tc">captura verificada, solo eBooks</text>
+  <path d="M90 106 L 90 168" class="l"/><text x="98" y="140" class="tc">cliente cancela</text>
+  <path d="M150 106 L 250 168" class="l"/><text x="262" y="150" class="tc">30 min sin pago</text>
+  <text x="380" y="200" class="tc">Al cancelar o expirar se devuelve el stock reservado.</text>
+
+  <text x="20" y="290" class="e" style="font-size:16px">Envío (solo pedidos PAID con impresos; solo administrador; un paso a la vez)</text>
+  <rect x="20" y="320" width="170" height="56" rx="10" fill="#fff" stroke="#1d2b45" stroke-width="2"/><text x="58" y="354" class="e">PENDIENTE</text>
+  <rect x="300" y="320" width="190" height="56" rx="10" fill="#fff" stroke="#1d2b45" stroke-width="2"/><text x="332" y="354" class="e">PREPARANDO</text>
+  <rect x="600" y="320" width="170" height="56" rx="10" fill="#fff" stroke="#1d2b45" stroke-width="2"/><text x="645" y="354" class="e">ENVIADO</text>
+  <rect x="880" y="320" width="180" height="56" rx="10" fill="#eaf4ef" stroke="#2e5e4e" stroke-width="2"/><text x="915" y="354" class="e">ENTREGADO</text>
+  <path d="M190 348 L 298 348" class="l"/>
+  <path d="M490 348 L 598 348" class="l"/><text x="496" y="400" class="tc">exige transportadora y guía</text>
+  <path d="M770 348 L 878 348" class="l"/>
+  <text x="1080" y="344" class="tc">Saltos y retrocesos</text><text x="1080" y="362" class="tc">responden 409</text>
+</svg>
+</div>
+</body>
+</html>
