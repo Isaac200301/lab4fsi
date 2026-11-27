@@ -6,8 +6,10 @@ Folio vende libros electrónicos con descarga inmediata y, para parte del catál
 
 | | URL |
 |---|---|
-| Frontend | _pendiente de despliegue en Railway_ |
-| Backend | _pendiente de despliegue en Railway_ (`/health`) |
+| Frontend | https://web-production-fcfa8733.up.railway.app |
+| Backend | https://server-production-60ae2691.up.railway.app ([`/health`](https://server-production-60ae2691.up.railway.app/health)) |
+
+Ambos servicios corren en Railway (proyecto `folio`, servicios `server` y `web`, cada uno desplegado desde su carpeta). Cuentas de prueba: `cliente@folio.test` y `admin@folio.test` (contraseñas entregadas con el informe).
 
 Documentos: [PRD.md](PRD.md) (requisitos y criterios de aceptación) · [PLAN.md](PLAN.md) (plan de implementación).
 
