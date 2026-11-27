@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tinta: #1d2b45;
+  --color-tinta-suave: #34425e;
+  --color-papel: #f6f7f9;
+  --color-hoja: #ffffff;
+  --color-biblioteca: #2e5e4e;
+  --color-laton: #b8862b;
+  --color-laton-oscuro: #8a6219;
+  --color-lapiz: #5b6472;
+  --color-linea: #dfe3ea;
+  --color-alerta: #b3261e;
+
+  --font-libro: var(--font-newsreader), Georgia, serif;
+  --font-ui: var(--font-bricolage), system-ui, sans-serif;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-laton);
+  outline-offset: 2px;
+}
+
+/* Único movimiento automático: el stock que cambia en vivo destella una vez. */
+@keyframes destello {
+  from { background-color: rgb(184 134 43 / 0.35); }
+  to { background-color: transparent; }
+}
+.destello {
+  animation: destello 1.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .destello { animation: none; }
+}
